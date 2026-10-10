@@ -1,0 +1,1489 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Gadafy Hub 🎬</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#050008;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* =========================
+   BACKGROUND
+========================= */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:-50%;
+    z-index:-5;
+
+    background:
+    radial-gradient(
+        circle at 20% 20%,
+        rgba(255,0,170,.25),
+        transparent 25%
+    ),
+    radial-gradient(
+        circle at 80% 30%,
+        rgba(0,255,100,.18),
+        transparent 25%
+    ),
+    radial-gradient(
+        circle at 50% 90%,
+        rgba(255,0,170,.15),
+        transparent 30%
+    );
+
+    animation:backgroundMove 12s infinite alternate;
+}
+
+@keyframes backgroundMove{
+
+    from{
+        transform:translate(0,0) scale(1);
+    }
+
+    to{
+        transform:translate(5%,3%) scale(1.15);
+    }
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+
+    position:sticky;
+    top:0;
+    z-index:1000;
+
+    padding:15px 5%;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    background:rgba(5,0,8,.85);
+
+    backdrop-filter:blur(20px);
+
+    border-bottom:
+        1px solid rgba(0,255,100,.3);
+}
+
+.logo{
+
+    font-size:1.7rem;
+    font-weight:900;
+
+    text-shadow:
+        0 0 5px #ff009d,
+        0 0 15px #ff009d,
+        0 0 30px #00ff66;
+}
+
+.logo span{
+    color:#00ff66;
+}
+
+nav{
+    display:flex;
+    gap:25px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+nav a:hover{
+    color:#00ff66;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+
+    min-height:550px;
+
+    display:flex;
+    flex-direction:column;
+
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    padding:70px 20px;
+}
+
+.badge{
+
+    border:1px solid #00ff66;
+
+    color:#00ff66;
+
+    padding:10px 20px;
+
+    border-radius:50px;
+
+    margin-bottom:20px;
+
+    box-shadow:
+        0 0 15px rgba(0,255,100,.3);
+}
+
+.hero h1{
+
+    font-size:
+        clamp(3.5rem,10vw,8rem);
+
+    line-height:.9;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff009d,
+            white,
+            #00ff66
+        );
+
+    -webkit-background-clip:text;
+    background-clip:text;
+
+    color:transparent;
+
+    text-shadow:none;
+}
+
+.hero p{
+
+    max-width:750px;
+
+    color:#aaa;
+
+    line-height:1.7;
+
+    margin:25px 0;
+}
+
+.btn{
+
+    display:inline-block;
+
+    padding:14px 25px;
+
+    border-radius:12px;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    color:white;
+
+    cursor:pointer;
+
+    border:none;
+
+    transition:.3s;
+}
+
+.btn:hover{
+    transform:translateY(-4px);
+}
+
+.pink{
+    background:#ff009d;
+    box-shadow:0 0 25px rgba(255,0,157,.4);
+}
+
+.green{
+    background:#00d95b;
+    color:#001006;
+    box-shadow:0 0 25px rgba(0,255,100,.3);
+}
+
+/* =========================
+   SEARCH
+========================= */
+
+.controls{
+
+    width:92%;
+    max-width:1200px;
+
+    margin:0 auto 40px;
+}
+
+.search{
+
+    width:100%;
+
+    padding:18px;
+
+    background:rgba(255,255,255,.05);
+
+    border:
+        1px solid rgba(255,0,157,.5);
+
+    border-radius:15px;
+
+    outline:none;
+
+    color:white;
+
+    font-size:1rem;
+
+    margin-bottom:20px;
+}
+
+.filters{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+    gap:10px;
+}
+
+.filter{
+
+    padding:10px 18px;
+
+    border-radius:50px;
+
+    background:rgba(255,255,255,.05);
+
+    color:white;
+
+    border:
+        1px solid rgba(255,0,157,.4);
+
+    cursor:pointer;
+}
+
+.filter.active,
+.filter:hover{
+
+    background:#ff009d;
+
+    box-shadow:
+        0 0 15px rgba(255,0,157,.4);
+}
+
+/* =========================
+   MOVIES
+========================= */
+
+.section{
+
+    width:94%;
+    max-width:1400px;
+
+    margin:0 auto 80px;
+}
+
+.section-title{
+
+    text-align:center;
+
+    margin-bottom:30px;
+}
+
+.section-title h2{
+
+    font-size:2.5rem;
+
+    text-shadow:
+        0 0 15px #ff009d;
+}
+
+.section-title p{
+    color:#999;
+    margin-top:10px;
+}
+
+.movie-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(210px,1fr)
+        );
+
+    gap:22px;
+}
+
+.card{
+
+    background:
+        rgba(15,5,18,.9);
+
+    border:
+        1px solid rgba(255,0,157,.25);
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    transition:.35s;
+
+    position:relative;
+}
+
+.card:hover{
+
+    transform:
+        translateY(-8px);
+
+    border-color:#00ff66;
+
+    box-shadow:
+        0 0 25px
+        rgba(0,255,100,.2);
+}
+
+.poster{
+
+    width:100%;
+
+    height:300px;
+
+    object-fit:cover;
+
+    background:#120014;
+}
+
+.card-content{
+    padding:15px;
+}
+
+.card h3{
+    margin:8px 0;
+}
+
+.genre{
+
+    color:#00ff66;
+
+    font-size:.8rem;
+
+    text-transform:uppercase;
+
+    font-weight:bold;
+}
+
+.card-buttons{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:8px;
+
+    margin-top:15px;
+}
+
+.watch{
+
+    border:none;
+
+    padding:10px;
+
+    border-radius:8px;
+
+    background:#ff009d;
+
+    color:white;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.watch:hover{
+
+    transform:scale(1.05);
+
+    box-shadow:
+        0 0 20px #ff009d;
+}
+
+.youtube{
+
+    padding:10px;
+
+    border-radius:8px;
+
+    background:#00d95b;
+
+    color:#001006;
+
+    text-align:center;
+
+    text-decoration:none;
+
+    font-size:.8rem;
+
+    font-weight:bold;
+}
+
+/* =========================
+   IN-PAGE PLAYER
+========================= */
+
+.player-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:5000;
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:20px;
+
+    background:
+        rgba(0,0,0,.94);
+
+    backdrop-filter:blur(15px);
+}
+
+.player-overlay.active{
+    display:flex;
+}
+
+.player-box{
+
+    width:
+        min(1000px,100%);
+
+    background:#09000d;
+
+    border:
+        1px solid #ff009d;
+
+    border-radius:20px;
+
+    padding:15px;
+
+    box-shadow:
+
+        0 0 30px
+        rgba(255,0,157,.5),
+
+        0 0 60px
+        rgba(0,255,100,.15);
+}
+
+.player-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:5px 5px 15px;
+}
+
+.player-header h2{
+
+    color:white;
+
+    font-size:1.2rem;
+}
+
+.close{
+
+    width:42px;
+
+    height:42px;
+
+    border-radius:50%;
+
+    border:
+        1px solid #ff009d;
+
+    background:transparent;
+
+    color:white;
+
+    font-size:20px;
+
+    cursor:pointer;
+}
+
+.close:hover{
+
+    background:#ff009d;
+
+    box-shadow:
+        0 0 20px #ff009d;
+}
+
+/* VIDEO */
+
+.video-container{
+
+    width:100%;
+
+    aspect-ratio:16/9;
+
+    background:#000;
+
+    border-radius:15px;
+
+    overflow:hidden;
+
+    border:
+        2px solid rgba(0,255,100,.25);
+}
+
+.video-container iframe{
+
+    width:100%;
+
+    height:100%;
+
+    border:0;
+}
+
+/* =========================
+   INFO
+========================= */
+
+.player-info{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+    padding:15px 5px 5px;
+
+    color:#aaa;
+}
+
+.player-info strong{
+    color:#00ff66;
+}
+
+/* =========================
+   STATS
+========================= */
+
+.stats{
+
+    width:92%;
+    max-width:1100px;
+
+    margin:0 auto 80px;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:20px;
+}
+
+.stat{
+
+    text-align:center;
+
+    padding:30px;
+
+    border:
+        1px solid rgba(0,255,100,.25);
+
+    border-radius:18px;
+
+    background:
+        rgba(255,255,255,.03);
+}
+
+.stat strong{
+
+    display:block;
+
+    font-size:2.5rem;
+
+    color:#00ff66;
+
+    text-shadow:
+        0 0 15px #00ff66;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+
+    text-align:center;
+
+    padding:40px;
+
+    color:#777;
+
+    border-top:
+        1px solid rgba(255,0,157,.25);
+}
+
+footer b{
+    color:#ff009d;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:700px){
+
+    nav{
+        display:none;
+    }
+
+    .movie-grid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+        gap:12px;
+    }
+
+    .poster{
+        height:230px;
+    }
+
+    .card-buttons{
+        grid-template-columns:1fr;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .player-info{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+    <div class="logo">
+        GADAFY <span>HUB</span> 🎬
+    </div>
+
+    <nav>
+
+        <a href="#home">Home</a>
+
+        <a href="#movies">Animations</a>
+
+        <a href="#about">About</a>
+
+    </nav>
+
+</header>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero" id="home">
+
+    <div class="badge">
+        ⚡ NEON ANIMATION WORLD
+    </div>
+
+    <h1>
+        GADAFY HUB
+    </h1>
+
+    <p>
+        Discover your favourite animated movies,
+        watch trailers directly inside Gadafy Hub,
+        and find legitimate online viewing options.
+    </p>
+
+    <div>
+
+        <a
+            href="#movies"
+            class="btn pink">
+
+            🎬 EXPLORE
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     SEARCH
+========================= -->
+
+<section class="controls">
+
+    <input
+        id="search"
+        class="search"
+        type="text"
+        placeholder="🔎 Search animations..."
+    >
+
+    <div class="filters">
+
+        <button
+            class="filter active"
+            data-filter="all">
+
+            All
+
+        </button>
+
+        <button
+            class="filter"
+            data-filter="action">
+
+            Action
+
+        </button>
+
+        <button
+            class="filter"
+            data-filter="adventure">
+
+            Adventure
+
+        </button>
+
+        <button
+            class="filter"
+            data-filter="comedy">
+
+            Comedy
+
+        </button>
+
+        <button
+            class="filter"
+            data-filter="fantasy">
+
+            Fantasy
+
+        </button>
+
+        <button
+            class="filter"
+            data-filter="family">
+
+            Family
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     MOVIES
+========================= -->
+
+<section
+    class="section"
+    id="movies">
+
+    <div class="section-title">
+
+        <h2>
+            🔥 Animation Collection
+        </h2>
+
+        <p>
+            Click WATCH to open the video player
+            without leaving Gadafy Hub.
+        </p>
+
+    </div>
+
+    <div
+        class="movie-grid"
+        id="movieGrid">
+    </div>
+
+</section>
+
+
+<!-- =========================
+     STATS
+========================= -->
+
+<section class="stats">
+
+    <div class="stat">
+
+        <strong id="totalMovies">
+            0
+        </strong>
+
+        <span>
+            Animations
+        </span>
+
+    </div>
+
+    <div class="stat">
+
+        <strong>
+            ▶
+        </strong>
+
+        <span>
+            In-Page Player
+        </span>
+
+    </div>
+
+    <div class="stat">
+
+        <strong>
+            4K
+        </strong>
+
+        <span>
+            Ready Design
+        </span>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ABOUT
+========================= -->
+
+<section
+    class="section"
+    id="about">
+
+    <div class="section-title">
+
+        <h2>
+            💚 About Gadafy Hub
+        </h2>
+
+        <p>
+            A neon animation discovery website
+            with an embedded YouTube player.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     IN-PAGE PLAYER
+========================= -->
+
+<div
+    class="player-overlay"
+    id="playerOverlay">
+
+    <div class="player-box">
+
+        <div class="player-header">
+
+            <h2 id="playerTitle">
+                Now Playing
+            </h2>
+
+            <button
+                class="close"
+                onclick="closePlayer()">
+
+                ✕
+
+            </button>
+
+        </div>
+
+
+        <div class="video-container">
+
+            <iframe
+                id="videoPlayer"
+                src=""
+                title="Gadafy Hub Video Player"
+                allow="
+                    accelerometer;
+                    autoplay;
+                    clipboard-write;
+                    encrypted-media;
+                    gyroscope;
+                    picture-in-picture;
+                    web-share
+                "
+                allowfullscreen>
+            </iframe>
+
+        </div>
+
+
+        <div class="player-info">
+
+            <span>
+                🎬 <strong id="playingName">
+                    Animation
+                </strong>
+            </span>
+
+            <span>
+                Powered by YouTube
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<footer>
+
+    <p>
+        © 2026
+        <b>Gadafy Hub</b>
+        • Animation Entertainment 🎬
+    </p>
+
+</footer>
+
+
+<script>
+
+/* ==========================================================
+   MOVIES
+
+   IMPORTANT:
+   "video" is a YouTube VIDEO ID.
+
+   Add a YouTube video ID to make that movie's
+   WATCH button play inside the page.
+========================================================== */
+
+const movies = [
+
+    {
+        title:"Spider-Man: Into the Spider-Verse",
+        genre:"adventure",
+        image:"https://images.unsplash.com/photo-1578632292335-df3abbb0d586?auto=format&fit=crop&w=700&q=80",
+        video:"M7lc1UVf-VE"
+    },
+
+    {
+        title:"Toy Story",
+        genre:"family",
+        image:"https://images.unsplash.com/photo-1608889175123-8ee362201f81?auto=format&fit=crop&w=700&q=80",
+        video:"M7lc1UVf-VE"
+    },
+
+    {
+        title:"The Incredibles",
+        genre:"action",
+        image:"https://images.unsplash.com/photo-1606112219348-204d7d8b94ee?auto=format&fit=crop&w=700&q=80",
+        video:"M7lc1UVf-VE"
+    },
+
+    {
+        title:"Finding Nemo",
+        genre:"adventure",
+        image:"https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=700&q=80",
+        video:"M7lc1UVf-VE"
+    },
+
+    {
+        title:"Cars",
+        genre:"family",
+        image:"https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=700&q=80",
+        video:"M7lc1UVf-VE"
+    },
+
+    {
+        title:"WALL-E",
+        genre:"fantasy",
+        image:"https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=700&q=80",
+        video:"M7lc1UVf-VE"
+    },
+
+    {
+        title:"Frozen",
+        genre:"fantasy",
+        image:"https://images.unsplash.com/photo-1517299321609-52687d1bc55a?auto=format&fit=crop&w=700&q=80",
+        video:"M7lc1UVf-VE"
+    },
+
+    {
+        title:"Moana",
+        genre:"adventure",
+        image:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=80",
+        video:"M7lc1UVf-VE"
+    },
+
+    {
+        title:"Kung Fu Panda",
+        genre:"action",
+        image:"https://images.unsplash.com/photo-1540573133985-87b6da6d54a9?auto=format&fit=crop&w=700&q=80",
+        video:"M7lc1UVf-VE"
+    },
+
+    {
+        title:"How to Train Your Dragon",
+        genre:"adventure",
+        image:"https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=700&q=80",
+        video:"M7lc1UVf-VE"
+    },
+
+    {
+        title:"Shrek",
+        genre:"comedy",
+        image:"https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=700&q=80",
+        video:"M7lc1UVf-VE"
+    },
+
+    {
+        title:"Despicable Me",
+        genre:"comedy",
+        image:"https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=700&q=80",
+        video:"M7lc1UVf-VE"
+    },
+
+    {
+        title:"The Lion King",
+        genre:"adventure",
+        image:"https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=700&q=80",
+        video:"M7lc1UVf-VE"
+    },
+
+    {
+        title:"Zootopia",
+        genre:"comedy",
+        image:"https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=700&q=80",
+        video:"M7lc1UVf-VE"
+    },
+
+    {
+        title:"Big Hero 6",
+        genre:"action",
+        image:"https://images.unsplash.com/photo-1486401899868-0e435ed85128?auto=format&fit=crop&w=700&q=80",
+        video:"M7lc1UVf-VE"
+    },
+
+    {
+        title:"Coco",
+        genre:"fantasy",
+        image:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=700&q=80",
+        video:"M7lc1UVf-VE"
+    },
+
+    {
+        title:"Ratatouille",
+        genre:"comedy",
+        image:"https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=700&q=80",
+        video:"M7lc1UVf-VE"
+    },
+
+    {
+        title:"Up",
+        genre:"adventure",
+        image:"https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=700&q=80",
+        video:"M7lc1UVf-VE"
+    },
+
+    {
+        title:"Encanto",
+        genre:"fantasy",
+        image:"https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=700&q=80",
+        video:"M7lc1UVf-VE"
+    },
+
+    {
+        title:"Puss in Boots: The Last Wish",
+        genre:"action",
+        image:"https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=700&q=80",
+        video:"M7lc1UVf-VE"
+    }
+
+];
+
+
+/* ==========================================================
+   CREATE CARDS
+========================================================== */
+
+const grid =
+    document.getElementById("movieGrid");
+
+const totalMovies =
+    document.getElementById("totalMovies");
+
+
+function renderMovies(){
+
+    grid.innerHTML="";
+
+    movies.forEach((movie,index)=>{
+
+        const card =
+            document.createElement("article");
+
+        card.className="card";
+
+        card.dataset.genre =
+            movie.genre;
+
+        card.dataset.title =
+            movie.title.toLowerCase();
+
+
+        card.innerHTML=`
+
+            <img
+                class="poster"
+                src="${movie.image}"
+                alt="${movie.title}"
+                loading="lazy"
+            >
+
+            <div class="card-content">
+
+                <div class="genre">
+                    ${movie.genre}
+                </div>
+
+                <h3>
+                    ${movie.title}
+                </h3>
+
+                <div class="card-buttons">
+
+                    <button
+                        class="watch"
+                        onclick="openPlayer(
+                            '${movie.title.replace(/'/g,"\\'")}',
+                            '${movie.video}'
+                        )">
+
+                        ▶ WATCH
+
+                    </button>
+
+
+                    <a
+                        class="youtube"
+                        href="https://www.youtube.com/results?search_query=${encodeURIComponent(movie.title+" official trailer")}"
+                        target="_blank"
+                        rel="noopener">
+
+                        TRAILER
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        `;
+
+        grid.appendChild(card);
+
+    });
+
+    totalMovies.textContent =
+        movies.length;
+
+}
+
+
+renderMovies();
+
+
+/* ==========================================================
+   IN-PAGE PLAYER
+========================================================== */
+
+function openPlayer(title,videoID){
+
+    const overlay =
+        document.getElementById(
+            "playerOverlay"
+        );
+
+    const player =
+        document.getElementById(
+            "videoPlayer"
+        );
+
+    const titleElement =
+        document.getElementById(
+            "playerTitle"
+        );
+
+    const nameElement =
+        document.getElementById(
+            "playingName"
+        );
+
+
+    titleElement.textContent =
+        "▶ " + title;
+
+    nameElement.textContent =
+        title;
+
+
+    /*
+       YouTube's official embed format:
+       https://www.youtube.com/embed/VIDEO_ID
+    */
+
+    player.src =
+        "https://www.youtube.com/embed/" +
+        videoID +
+        "?autoplay=1&rel=0&playsinline=1";
+
+
+    overlay.classList.add(
+        "active"
+    );
+
+
+    document.body.style.overflow =
+        "hidden";
+
+}
+
+
+/* ==========================================================
+   CLOSE PLAYER
+========================================================== */
+
+function closePlayer(){
+
+    const overlay =
+        document.getElementById(
+            "playerOverlay"
+        );
+
+    const player =
+        document.getElementById(
+            "videoPlayer"
+        );
+
+
+    /*
+       Clearing src stops the video.
+    */
+
+    player.src="";
+
+    overlay.classList.remove(
+        "active"
+    );
+
+    document.body.style.overflow =
+        "auto";
+
+}
+
+
+/* ==========================================================
+   CLOSE WHEN CLICKING OUTSIDE
+========================================================== */
+
+document
+.getElementById("playerOverlay")
+.addEventListener("click",function(e){
+
+    if(e.target === this){
+
+        closePlayer();
+
+    }
+
+});
+
+
+/* ==========================================================
+   ESC KEY
+========================================================== */
+
+document.addEventListener(
+    "keydown",
+    function(e){
+
+        if(e.key === "Escape"){
+
+            closePlayer();
+
+        }
+
+    }
+);
+
+
+/* ==========================================================
+   SEARCH
+========================================================== */
+
+const search =
+    document.getElementById(
+        "search"
+    );
+
+
+search.addEventListener(
+    "input",
+    function(){
+
+        const query =
+            this.value
+            .toLowerCase()
+            .trim();
+
+
+        document
+        .querySelectorAll(".card")
+        .forEach(card=>{
+
+            const title =
+                card.dataset.title;
+
+            card.style.display =
+                title.includes(query)
+                ? ""
+                : "none";
+
+        });
+
+    }
+);
+
+
+/* ==========================================================
+   FILTERS
+========================================================== */
+
+document
+.querySelectorAll(".filter")
+.forEach(button=>{
+
+    button.addEventListener(
+        "click",
+        function(){
+
+            document
+            .querySelectorAll(".filter")
+            .forEach(btn=>{
+                btn.classList.remove(
+                    "active"
+                );
+            });
+
+            this.classList.add(
+                "active"
+            );
+
+
+            const filter =
+                this.dataset.filter;
+
+
+            document
+            .querySelectorAll(".card")
+            .forEach(card=>{
+
+                if(
+                    filter==="all" ||
+                    card.dataset.genre===filter
+                ){
+
+                    card.style.display="";
+
+                }else{
+
+                    card.style.display="none";
+
+                }
+
+            });
+
+        }
+    );
+
+});
+
+</script>
+
+</body>
+<footer>
+<p>powered by Gadafy odhiambo copyright © 2026🕶️</p>
+</footer>
+</html>
