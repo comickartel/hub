@@ -1,0 +1,347 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contact Us | St. Patrick Vaal School</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #e8f0ff, #f5f7fa);
+            color: #222;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: #123b70;
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+        }
+
+        header h1 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            font-size: 15px;
+            color: #e0eaff;
+        }
+
+        nav {
+            background: #0b2850;
+            text-align: center;
+            padding: 12px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 12px;
+            font-size: 15px;
+        }
+
+        nav a:hover {
+            color: #ffd166;
+        }
+
+        main {
+            flex: 1;
+            width: 100%;
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 0 18px;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 32px;
+            border-radius: 14px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.10);
+        }
+
+        .contact-card h2 {
+            text-align: center;
+            color: #123b70;
+            margin-bottom: 12px;
+        }
+
+        .intro {
+            text-align: center;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .email-info {
+            background: #eef4ff;
+            padding: 14px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 25px;
+            overflow-wrap: anywhere;
+        }
+
+        .email-info a {
+            color: #123b70;
+            font-weight: bold;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 7px;
+            color: #333;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            font-size: 15px;
+            font-family: inherit;
+            outline: none;
+            background: #fff;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #123b70;
+            box-shadow: 0 0 0 3px rgba(18, 59, 112, 0.12);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 140px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: #123b70;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background: #0b2850;
+        }
+
+        .note {
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+            margin-top: 14px;
+            line-height: 1.5;
+        }
+
+        footer {
+            background: #0b2850;
+            color: white;
+            text-align: center;
+            padding: 18px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 500px) {
+            header h1 {
+                font-size: 24px;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 5px 8px;
+            }
+
+            .contact-card {
+                padding: 22px 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>St. Patrick Vaal School</h1>
+        <p>We are happy to hear from you!</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="#contact">Contact Us</a>
+        <a href="mailto:stpatrickvaalschool@gmail.com">
+            Email Us
+        </a>
+    </nav>
+
+    <main id="contact">
+        <section class="contact-card">
+
+            <h2>Contact Us</h2>
+
+            <p class="intro">
+                Have a question, suggestion, or enquiry?
+                Fill in the form below and contact our school.
+                We look forward to hearing from you.
+            </p>
+
+            <div class="email-info">
+                School Email:<br>
+                <a href="mailto:stpatrickvaalschool@gmail.com">
+                    stpatrickvaalschool@gmail.com
+                </a>
+            </div>
+
+            <form id="contactForm">
+
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Enter your full name"
+                        autocomplete="name"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Your Email Address</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Enter your email address"
+                        autocomplete="email"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <select id="subject" name="subject" required>
+                        <option value="">Select a subject</option>
+                        <option value="General Enquiry">
+                            General Enquiry
+                        </option>
+                        <option value="Admissions">
+                            School Admissions
+                        </option>
+                        <option value="Fees">
+                            School Fees
+                        </option>
+                        <option value="Academic Enquiry">
+                            Academic Enquiry
+                        </option>
+                        <option value="Other">
+                            Other
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Your Message</label>
+                    <textarea
+                        id="message"
+                        name="message"
+                        placeholder="Write your message here..."
+                        required
+                    ></textarea>
+                </div>
+
+                <button type="submit">
+                    Send Message
+                </button>
+
+                <p class="note">
+                    Clicking Send Message opens your default email
+                    application. You can review the email before sending.
+                </p>
+
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>
+            &copy; <span id="year"></span>
+            St. Patrick Vaal School. All rights reserved.
+        </p>
+    </footer>
+
+    <script>
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+
+        document.getElementById("contactForm").addEventListener(
+            "submit",
+            function(event) {
+                event.preventDefault();
+
+                const name =
+                    document.getElementById("name").value.trim();
+
+                const email =
+                    document.getElementById("email").value.trim();
+
+                const subject =
+                    document.getElementById("subject").value;
+
+                const message =
+                    document.getElementById("message").value.trim();
+
+                if (!name || !email || !subject || !message) {
+                    alert("Please fill in all the fields.");
+                    return;
+                }
+
+                const recipient = "stpatrickvaalschool@gmail.com";
+
+                const emailSubject =
+                    "Website Contact: " + subject;
+
+                const emailBody =
+                    "Name: " + name + "\n" +
+                    "Email: " + email + "\n" +
+                    "Subject: " + subject + "\n\n" +
+                    "Message:\n" + message;
+
+                const mailtoLink =
+                    "mailto:" + recipient +
+                    "?subject=" + encodeURIComponent(emailSubject) +
+                    "&body=" + encodeURIComponent(emailBody);
+
+                window.location.href = mailtoLink;
+            }
+        );
+    </script>
+
+</body>
+</html>
