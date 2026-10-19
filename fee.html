@@ -1,0 +1,186 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>School Fee Management</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1 id="schoolName">School Fee Manager</h1>
+      <p>Fee management system</p>
+    </div>
+    <button id="logoutBtn" class="secondary hidden">Log out</button>
+  </header>
+
+  <main class="container">
+    <section id="loginPanel" class="panel login-panel">
+      <h2>Admin Login</h2>
+      <p>Sign in to manage school fees.</p>
+      <form id="loginForm">
+        <label for="email">Admin email</label>
+        <input id="email" type="email" required autocomplete="username">
+
+        <label for="password">Password</label>
+        <input id="password" type="password" required
+               autocomplete="current-password">
+
+        <button type="submit">Sign in</button>
+      </form>
+      <p id="loginMessage" class="message" aria-live="polite"></p>
+    </section>
+
+    <section id="dashboard" class="hidden">
+      <div class="welcome">
+        <div>
+          <h2>Admin Dashboard</h2>
+          <p>Manage fees, students and payments.</p>
+        </div>
+      </div>
+
+      <div class="stats">
+        <article class="stat-card">
+          <span>Total students</span>
+          <strong id="studentCount">0</strong>
+        </article>
+        <article class="stat-card">
+          <span>Total fees expected</span>
+          <strong id="expectedTotal">KSh 0</strong>
+        </article>
+        <article class="stat-card">
+          <span>Total payments received</span>
+          <strong id="paidTotal">KSh 0</strong>
+        </article>
+      </div>
+
+      <section class="panel">
+        <h3>Update school fees</h3>
+        <p>Choose a class and term, then save the new amount.</p>
+        <form id="feeForm" class="form-grid">
+          <div>
+            <label for="feeClass">Class</label>
+            <select id="feeClass" required>
+              <option value="Grade 1">Grade 1</option>
+              <option value="Grade 2">Grade 2</option>
+              <option value="Grade 3">Grade 3</option>
+              <option value="Grade 4">Grade 4</option>
+              <option value="Grade 5">Grade 5</option>
+              <option value="Grade 6">Grade 6</option>
+              <option value="Grade 7">Grade 7</option>
+              <option value="Grade 8">Grade 8</option>
+              <option value="Grade 9">Grade 9</option>
+            </select>
+          </div>
+          <div>
+            <label for="feeTerm">Term</label>
+            <select id="feeTerm">
+              <option value="Term 1">Term 1</option>
+              <option value="Term 2">Term 2</option>
+              <option value="Term 3">Term 3</option>
+            </select>
+          </div>
+          <div>
+            <label for="feeYear">Academic year</label>
+            <input id="feeYear" type="number" min="2020" max="2100"
+                   value="2026" required>
+          </div>
+          <div>
+            <label for="feeAmount">Fee amount (KSh)</label>
+            <input id="feeAmount" type="number" min="0" step="0.01"
+                   placeholder="e.g. 15000" required>
+          </div>
+          <button type="submit">Save fee</button>
+        </form>
+        <p id="feeMessage" class="message" aria-live="polite"></p>
+      </section>
+
+      <section class="panel">
+        <h3>Add a student</h3>
+        <form id="studentForm" class="form-grid">
+          <div>
+            <label for="studentName">Full name</label>
+            <input id="studentName" required maxlength="120">
+          </div>
+          <div>
+            <label for="admissionNo">Admission number</label>
+            <input id="admissionNo" required maxlength="50">
+          </div>
+          <div>
+            <label for="studentClass">Class</label>
+            <select id="studentClass" required>
+              <option>Grade 1</option><option>Grade 2</option>
+              <option>Grade 3</option><option>Grade 4</option>
+              <option>Grade 5</option><option>Grade 6</option>
+              <option>Grade 7</option><option>Grade 8</option>
+              <option>Grade 9</option>
+            </select>
+          </div>
+          <button type="submit">Add student</button>
+        </form>
+        <p id="studentMessage" class="message" aria-live="polite"></p>
+      </section>
+
+      <section class="panel">
+        <h3>Record a payment</h3>
+        <form id="paymentForm" class="form-grid">
+          <div>
+            <label for="paymentStudent">Student</label>
+            <select id="paymentStudent" required></select>
+          </div>
+          <div>
+            <label for="paymentTerm">Term</label>
+            <select id="paymentTerm">
+              <option>Term 1</option><option>Term 2</option>
+              <option>Term 3</option>
+            </select>
+          </div>
+          <div>
+            <label for="paymentYear">Academic year</label>
+            <input id="paymentYear" type="number" min="2020" max="2100"
+                   value="2026" required>
+          </div>
+          <div>
+            <label for="paymentAmount">Amount paid (KSh)</label>
+            <input id="paymentAmount" type="number" min="0.01"
+                   step="0.01" required>
+          </div>
+          <button type="submit">Record payment</button>
+        </form>
+        <p id="paymentMessage" class="message" aria-live="polite"></p>
+      </section>
+
+      <section class="panel">
+        <h3>Student fee balances</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Admission No.</th>
+                <th>Student</th>
+                <th>Class</th>
+                <th>Fee due</th>
+                <th>Paid</th>
+                <th>Balance</th>
+              </tr>
+            </thead>
+            <tbody id="studentTable">
+              <tr><td colspan="6">Loading students...</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <button id="refreshBtn" class="secondary">Refresh data</button>
+        <p id="dashboardMessage" class="message" aria-live="polite"></p>
+      </section>
+    </section>
+  </main>
+
+  <footer>
+    <p>School Fee Management System</p>
+  </footer>
+</body>
+</html>
