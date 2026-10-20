@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,17 +8,190 @@
   <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="script.js" defer></script>
+
+  <style>
+    :root {
+      --navy: #102a43;
+      --blue: #2563eb;
+      --green: #059669;
+      --light: #f1f5f9;
+      --muted: #64748b;
+      --white: #fff;
+    }
+
+    body {
+      margin: 0;
+      background: #f1f5f9;
+      color: var(--navy);
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+    }
+
+    .topbar {
+      background: linear-gradient(120deg, #102a43, #2563eb);
+      color: white;
+      padding: 24px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .topbar h1 { margin: 0; font-size: 27px; }
+    .topbar p { margin-bottom: 0; opacity: .8; }
+
+    .container {
+      max-width: 1150px;
+      margin: 28px auto;
+      padding: 0 18px;
+    }
+
+    .panel, .stat-card, .fee-card {
+      background: white;
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 22px;
+      box-shadow: 0 8px 28px rgba(15, 23, 42, .06);
+    }
+
+    .welcome {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 22px;
+    }
+
+    .welcome h2 { margin-bottom: 6px; }
+    .welcome p { color: var(--muted); }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 18px;
+      margin-bottom: 26px;
+    }
+
+    .stat-card { margin: 0; border-top: 4px solid var(--blue); }
+    .stat-card span { display: block; color: var(--muted); }
+    .stat-card strong { display: block; font-size: 25px; margin-top: 12px; }
+
+    .fee-hero {
+      background: linear-gradient(135deg, #102a43, #2563eb);
+      color: white;
+      border-radius: 20px;
+      padding: 30px;
+      margin-bottom: 24px;
+    }
+
+    .fee-hero .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 12px;
+      opacity: .8;
+    }
+
+    .fee-hero h2 { font-size: clamp(30px, 5vw, 46px); margin: 12px 0; }
+    .fee-hero p { line-height: 1.6; opacity: .9; }
+
+    .fee-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+
+    .fee-card { margin: 0; border: 1px solid #e2e8f0; }
+    .fee-card .term { color: var(--muted); font-weight: 600; }
+    .fee-card h3 { font-size: 29px; margin: 12px 0; }
+    .fee-card p { color: var(--muted); font-size: 14px; }
+    .fee-card .tag {
+      display: inline-block;
+      background: #d1fae5;
+      color: #065f46;
+      padding: 6px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .fee-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+
+    .fee-total strong { font-size: 25px; color: #047857; }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 16px;
+      align-items: end;
+    }
+
+    label { display: block; margin-bottom: 7px; font-weight: 600; }
+
+    input, select {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 9px;
+      background: white;
+      font: inherit;
+    }
+
+    input:focus, select:focus {
+      outline: 2px solid #93c5fd;
+      border-color: var(--blue);
+    }
+
+    button {
+      border: 0;
+      border-radius: 9px;
+      padding: 12px 18px;
+      background: var(--blue);
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    button:hover { filter: brightness(.93); }
+    button.secondary { background: #e2e8f0; color: var(--navy); }
+
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; min-width: 650px; }
+    th, td { padding: 13px; text-align: left; border-bottom: 1px solid #e2e8f0; }
+    th { background: #f8fafc; }
+    footer { text-align: center; padding: 24px; color: var(--muted); }
+    .hidden { display: none !important; }
+
+    @media (max-width: 600px) {
+      .topbar { padding: 20px; }
+      .topbar h1 { font-size: 22px; }
+      .panel { padding: 18px; }
+      .fee-hero { padding: 23px; }
+    }
+  </style>
 </head>
+
 <body>
   <header class="topbar">
     <div>
       <h1 id="schoolName">School Fee Manager</h1>
-      <p>Fee management system</p>
+      <p>Simple, transparent and reliable fee management</p>
     </div>
     <button id="logoutBtn" class="secondary hidden">Log out</button>
   </header>
 
   <main class="container">
+
     <section id="loginPanel" class="panel login-panel">
       <h2>Admin Login</h2>
       <p>Sign in to manage school fees.</p>
@@ -38,8 +212,49 @@
       <div class="welcome">
         <div>
           <h2>Admin Dashboard</h2>
-          <p>Manage fees, students and payments.</p>
+          <p>Manage your students, annual fees and payments.</p>
         </div>
+      </div>
+
+      <section class="fee-hero">
+        <span class="eyebrow">Annual School Fee Structure</span>
+        <h2>KSh 60,000 <small style="font-size:16px">/ year</small></h2>
+        <p>
+          A clear three-term fee plan designed to make school fee
+          planning and payment tracking easier for every family.
+        </p>
+        <p><strong>Academic year:</strong> 2026</p>
+      </section>
+
+      <div class="fee-grid">
+        <article class="fee-card">
+          <span class="tag">TERM 1</span>
+          <p class="term">First term</p>
+          <h3>KSh 20,000</h3>
+          <p>One-third of the annual school fee.</p>
+        </article>
+
+        <article class="fee-card">
+          <span class="tag">TERM 2</span>
+          <p class="term">Second term</p>
+          <h3>KSh 20,000</h3>
+          <p>Continue your annual fee payment plan.</p>
+        </article>
+
+        <article class="fee-card">
+          <span class="tag">TERM 3</span>
+          <p class="term">Third term</p>
+          <h3>KSh 20,000</h3>
+          <p>Complete the annual school fee plan.</p>
+        </article>
+      </div>
+
+      <div class="fee-total">
+        <div>
+          <strong>KSh 60,000</strong>
+          <p style="margin-bottom:0">Total annual fee per student</p>
+        </div>
+        <span>3 terms × KSh 20,000</span>
       </div>
 
       <div class="stats">
@@ -59,28 +274,23 @@
 
       <section class="panel">
         <h3>Update school fees</h3>
-        <p>Choose a class and term, then save the new amount.</p>
+        <p>Set a fee for a specific class, term and academic year.</p>
         <form id="feeForm" class="form-grid">
           <div>
             <label for="feeClass">Class</label>
             <select id="feeClass" required>
-              <option value="Grade 1">Grade 1</option>
-              <option value="Grade 2">Grade 2</option>
-              <option value="Grade 3">Grade 3</option>
-              <option value="Grade 4">Grade 4</option>
-              <option value="Grade 5">Grade 5</option>
-              <option value="Grade 6">Grade 6</option>
-              <option value="Grade 7">Grade 7</option>
-              <option value="Grade 8">Grade 8</option>
-              <option value="Grade 9">Grade 9</option>
+              <option>Grade 1</option><option>Grade 2</option>
+              <option>Grade 3</option><option>Grade 4</option>
+              <option>Grade 5</option><option>Grade 6</option>
+              <option>Grade 7</option><option>Grade 8</option>
+              <option>Grade 9</option>
             </select>
           </div>
           <div>
             <label for="feeTerm">Term</label>
-            <select id="feeTerm">
-              <option value="Term 1">Term 1</option>
-              <option value="Term 2">Term 2</option>
-              <option value="Term 3">Term 3</option>
+            <select id="feeTerm" required>
+              <option>Term 1</option><option>Term 2</option>
+              <option>Term 3</option>
             </select>
           </div>
           <div>
@@ -91,7 +301,7 @@
           <div>
             <label for="feeAmount">Fee amount (KSh)</label>
             <input id="feeAmount" type="number" min="0" step="0.01"
-                   placeholder="e.g. 15000" required>
+                   value="20000" required>
           </div>
           <button type="submit">Save fee</button>
         </form>
@@ -133,7 +343,7 @@
           </div>
           <div>
             <label for="paymentTerm">Term</label>
-            <select id="paymentTerm">
+            <select id="paymentTerm" required>
               <option>Term 1</option><option>Term 2</option>
               <option>Term 3</option>
             </select>
@@ -179,7 +389,7 @@
   </main>
 
   <footer>
-    <p>School Fee Management System</p>
+    <p>School Fee Management System · Annual Fee Plan: KSh 60,000</p>
   </footer>
 </body>
 </html>
