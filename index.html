@@ -19,10 +19,11 @@
 
 
     <!-- Header / Navigation -->
-    <header class="bg-blue-900 text-white shadow-md sticky top-0 z-50">
+   <header class="bg-blue-900 text-white shadow-md sticky top-0 z-50">
+    <!-- Main Flex Container -->
     <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
         
-        <!-- Logo and Brand Title Grouped Together -->
+        <!-- Left Side: Logo and Brand Title Grouped Together -->
         <div class="flex items-center space-x-3">
             <img
                 src="https://comickartel.github.io/hub/st_patricks_logo_adjusted.png"
@@ -34,21 +35,18 @@
             </span>
         </div>
 
-        <!-- Right Side: Navigation Menu (Leave empty or insert your links here) -->
-       
+        <!-- Right Side: Navigation Menu -->
+        <nav class="hidden md:flex space-x-6 text-sm font-medium">
+            <a href="#about" class="hover:text-blue-200 transition">About Us</a>
+            <a href="#academics" class="hover:text-blue-200 transition">Academics</a>
+            <a href="#achievements" class="hover:text-blue-200 transition">Sports & Culture</a>
+            <a href="#admissions" class="hover:text-blue-200 transition">Admissions</a>
+            <a href="#contact" class="hover:text-blue-200 transition">Contact</a>
+        </nav>
 
-    </div>
+    </div> <!-- This closes the flex container perfectly after the nav -->
+</header>
 
-
-            <nav class="hidden md:flex space-x-6 text-sm font-medium">
-                <a href="#about" class="hover:text-blue-200 transition">About Us</a>
-                <a href="#academics" class="hover:text-blue-200 transition">Academics</a>
-                <a href="#achievements" class="hover:text-blue-200 transition">Sports & Culture</a>
-                <a href="#admissions" class="hover:text-blue-200 transition">Admissions</a>
-                <a href="#contact" class="hover:text-blue-200 transition">Contact</a>
-            </nav>
-        </div>
-    </header>
 
     <!-- Hero / Home Section with id="home" -->
     <section id="home" class="relative bg-blue-950 text-white py-24 overflow-hidden">
