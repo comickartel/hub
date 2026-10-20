@@ -85,3 +85,36 @@ logoutBtn.addEventListener("click", async () => {
 
   showLogin();
 });
+
+const passwordForm = document.getElementById("passwordForm");
+
+if (passwordForm) {
+  const gate = document.getElementById("passwordGate");
+  const accessInput = document.getElementById("accessPassword");
+  const message = document.getElementById("passwordMessage");
+  const header = document.querySelector(".topbar");
+  const container = document.querySelector(".container");
+  const footer = document.querySelector("footer");
+
+  header.classList.add("hidden");
+  container.classList.add("hidden");
+  footer.classList.add("hidden");
+
+  passwordForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    if (accessInput.value === "rose254") {
+      gate.classList.add("hidden");
+      header.classList.remove("hidden");
+      container.classList.remove("hidden");
+      footer.classList.remove("hidden");
+      accessInput.value = "";
+      message.textContent = "";
+    } else {
+      message.textContent = "Incorrect access password.";
+      accessInput.value = "";
+      accessInput.focus();
+    }
+  });
+}
+
