@@ -288,16 +288,22 @@
             </form>
         </section>
     </main>
- <a
-  href="https://fee-structure-portal-s0v5.bolt.host"
-  target="_blank"
-  rel="noopener noreferrer"
+<button
+  type="button"
   aria-label="View official fee structure"
-  class="inline-flex items-center gap-2 rounded-full border-2 border-amber-400 bg-slate-950 px-6 py-3.5 font-black uppercase text-xs tracking-widest text-amber-400 shadow-2xl transition-all duration-300 hover:bg-amber-400 hover:text-slate-950 hover:scale-105 hover:shadow-amber-400/30 focus:outline-none focus:ring-4 focus:ring-slate-700"
+  class="group inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-blue-600 via-indigo-700 to-blue-800 px-6 py-3.5 font-extrabold text-white tracking-wide shadow-[0_0_20px_rgba(59,130,246,0.5)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-[0_0_30px_rgba(245,158,11,0.6)] hover:from-blue-500 hover:to-indigo-700 border border-amber-400/40 focus:outline-none focus:ring-4 focus:ring-amber-400"
 >
-  <span class="h-2 w-2 rounded-full bg-emerald-400 animate-bounce"></span>
+  <!-- Ping animation + solid dot for a radar effect -->
+  <span class="relative flex h-3 w-3">
+    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+    <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+  </span>
   <span>The Official Fee Structure</span>
-</a>
+  <!-- Arrow icon that slides right slightly on hover -->
+  <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://w3.org">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+  </svg>
+</button>
 
     <footer>
         <p>
