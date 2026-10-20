@@ -238,3 +238,9 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+/* Always show the fee structure without login */
+#dashboard {
+  display: block;
+}
+
+/* Keep admin-only sections hidden until login */
