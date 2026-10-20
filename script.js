@@ -14,9 +14,10 @@ function showDashboard() {
 }
 
 function showLogin() {
-  dashboard.classList.add("hidden");
-  loginPanel.classList.remove("hidden");
-  logoutBtn.classList.add("hidden");
+  document.getElementById("loginPanel")?.classList.remove("hidden");
+  document.getElementById("dashboard")?.classList.remove("hidden");
+  document.getElementById("logoutBtn")?.classList.add("hidden");
+}
 }
 
 // Make sure the correct screen is displayed on startup.
